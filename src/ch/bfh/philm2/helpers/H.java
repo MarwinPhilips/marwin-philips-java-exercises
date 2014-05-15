@@ -1,4 +1,4 @@
-package startExercises;
+package ch.bfh.philm2.helpers;
 
 import java.util.Scanner;
 
@@ -9,8 +9,7 @@ import java.util.Scanner;
 public class H {
 	
 	/** The s. */
-	Scanner s;
-	
+	public Scanner s;
 	/**
 	 * P l.
 	 *
@@ -29,7 +28,7 @@ public class H {
 	/**
 	 * ReadLine with String before the ReadLine written on the Console.
 	 *
-	 * @param question the question
+	 * @param question the text written before the readline.
 	 * @return the read string
 	 */
 	public String rL(String question){

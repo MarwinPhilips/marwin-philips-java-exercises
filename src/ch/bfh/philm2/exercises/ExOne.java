@@ -1,10 +1,13 @@
-package startExercises;
+package ch.bfh.philm2.exercises;
+
+import ch.bfh.philm2.helpers.H;
 
 public class ExOne {
-		H h;
+	private H h;
 	public ExOne(){
 		h = new H();
 		h.openScanner();		
+		
 		class Adress {
 			public String name;
 			public String adresse;
