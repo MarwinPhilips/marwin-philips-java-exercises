@@ -13,6 +13,7 @@ import trees.interfaces.Tree;
 public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	private TreeNode<E> root;
 	private ArrayList<Position<E>> positions;
+	private int size = 0;
 
 	private TreeNode<E> getRoot() {
 		if (root == null)
@@ -47,7 +48,7 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 
 	@Override
 	public Position<E> root() throws EmptyTreeException {
-		return root();
+		return getRoot();
 	}
 
 	@Override
@@ -119,41 +120,80 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 
 	@Override
 	public Position<E> addRoot(E e) throws UnemptyTreeException {
-		if(root!=null) throw new UnemptyTreeException();
-		root = new TreeNode<E>(e,null);
+		if (root != null)
+			throw new UnemptyTreeException();
+		root = new TreeNode<E>(e, null);
+		size++;
 		return root;
 	}
 
 	@Override
 	public Position<E> insertChild(Position<E> p, E e)
 			throws InvalidPositionException {
-		// TODO Auto-generated method stub
-		return null;
+		TreeNode<E> treeNode = isPositionInTree(p);
+		TreeNode<E> childToAdd = new TreeNode<E>(e, treeNode);
+		treeNode.AddChild(childToAdd);
+		size++;
+		return childToAdd;
 	}
 
 	@Override
 	public E replaceElement(Position<E> p, E e) throws InvalidPositionException {
-		// TODO Auto-generated method stub
-		return null;
+		TreeNode<E> treeNode = isPositionInTree(p);
+		treeNode.setElement(e);
+		return e;
 	}
 
 	@Override
 	public void swapElements(Position<E> p, Position<E> q)
 			throws InvalidPositionException {
-		// TODO Auto-generated method stub
-
+		TreeNode<E> treeNodeP = isPositionInTree(p);
+		TreeNode<E> treeNodeQ = isPositionInTree(q);
+		E toSwap = treeNodeP.element();
+		treeNodeP.setElement(treeNodeQ.element());
+		treeNodeQ.setElement(toSwap);
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return size == 0;
+	}
+
+	@Override
+	public String toString() {
+		if (root == null)
+			return "";
+		if (root.getChildren().size() == 0)
+			return root.element().toString();
+		return makeChildrenString(root);
+	}
+
+	private String makeChildrenString(TreeNode<E> node) {
+		String childrenString = node.element().toString();
+		if (node.getChildren().size() ==1 ) {
+			childrenString += " ("+node.getChildren().get(0).element().toString()+")";
+		}else if (node.getChildren().size()>1){
+			childrenString += " (";
+			int numberOfChildren = node.getChildren().size();
+			int currentChild = 1;
+			for (TreeNode<E> child : node.getChildren()) {
+				childrenString +=makeChildrenString(child);
+				
+				if(numberOfChildren>currentChild){
+					childrenString+=" ";
+				}else{
+					childrenString+=")";
+				}
+				currentChild++;
+			}
+			
+		}
+		return childrenString;
 	}
 
 	private int heightOf(TreeNode<E> node) {

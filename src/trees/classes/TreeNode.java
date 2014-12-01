@@ -19,10 +19,15 @@ public class TreeNode<E> implements Position<E> {
 	public E element() {
 		return element;
 	}
+	public void setElement(E element){
+		this.element=element;
+	}
 	public TreeNode<E> getParent() {
 		return parent;
 	}
-
+	public void AddChild(TreeNode<E> child){
+		children.add(child);
+	}
 	public void setParent(TreeNode<E> parent) {
 		this.parent = parent;
 	}
