@@ -1,10 +1,10 @@
-package topic3.interfaces;
+package trees.interfaces;
 
 import java.util.List;
 
-import topic3.exceptions.EmptyTreeException;
-import topic3.exceptions.InvalidPositionException;
-import topic3.exceptions.UnemptyTreeException;
+import trees.exceptions.EmptyTreeException;
+import trees.exceptions.InvalidPositionException;
+import trees.exceptions.UnemptyTreeException;
 
 public interface Tree<E> extends BasicCollection {
 	

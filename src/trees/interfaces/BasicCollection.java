@@ -1,4 +1,4 @@
-package topic3.interfaces;
+package trees.interfaces;
 
 public interface BasicCollection {
 

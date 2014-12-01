@@ -1,6 +1,6 @@
-package topic3.interfaces;
+package trees.interfaces;
 
-import topic3.exceptions.InvalidPositionException;
+import trees.exceptions.InvalidPositionException;
 
 
 public interface BinaryTree<E> extends Tree<E> {

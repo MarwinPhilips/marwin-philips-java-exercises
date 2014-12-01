@@ -1,4 +1,4 @@
-package topic3.tests;
+package trees.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -6,10 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import topic3.classes.LinkedBinaryTree;
-import topic3.interfaces.BinaryTree;
-import topic3.interfaces.Position;
-import topic3.interfaces.Tree;
+import trees.classes.LinkedBinaryTree;
+import trees.interfaces.BinaryTree;
+import trees.interfaces.Position;
+import trees.interfaces.Tree;
 
 public class LinkedBinaryTreeTest {
 

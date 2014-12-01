@@ -1,4 +1,4 @@
-package topic3.tests;
+package trees.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -6,15 +6,15 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import topic3.classes.LinkedTree;
-import topic3.interfaces.Position;
-import topic3.interfaces.Tree;
+import trees.classes.LinkedTree;
+import trees.interfaces.Position;
+import trees.interfaces.Tree;
 
 public class LinkedTreeTest {
 
 	@Test
 	public void test1() {
-		Tree<Integer> tree = new LinkedTree<>();
+		Tree<Integer> tree = new LinkedTree<Integer>();
 
 		// empty tree
 		assertTrue(tree.isEmpty());
