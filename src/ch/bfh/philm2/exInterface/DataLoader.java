@@ -13,14 +13,14 @@ import ch.bfh.philm2.exercises.Adress;
  * @version V26.12.2013
  */
 public class DataLoader {
-	private ArrayList<Person> persons;
+	private ArrayList<iPerson> persons;
 
 	/**
 	 * Constructs a <code>DataLoader</code> object and defines the date by
 	 * filling an <code>ArrayList</code>.
 	 */
 	public DataLoader() {
-		persons = new ArrayList<>();
+		persons = new ArrayList<iPerson>();
 
 		// Populate the list
 		persons.add(new Doctor("Petra", "Meier", "Dr. med.", "071 717 71 17"));
@@ -45,6 +45,7 @@ public class DataLoader {
 				"2", "3012", "Bern")));
 		persons.add(new Patient("Gerold", "Habakuk", 10010, new Adress(
 				"Uferweg", "22", "2555", "Brügg")));
+		((Person)persons.get(0)).firstName = "";
 	}
 
 	/**
@@ -54,7 +55,7 @@ public class DataLoader {
 	 * @return The <code>ArrayList</code> with <code>Doctor</code> and
 	 *         <code>Patient</code> objects.
 	 */
-	public ArrayList<Person> getData() {
+	public ArrayList<iPerson> getData() {
 		return persons;
 	}
 }

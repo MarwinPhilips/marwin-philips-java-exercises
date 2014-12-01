@@ -1,25 +1,14 @@
 package ch.bfh.philm2.exInterface;
 
-public class Doctor implements Person{
-	private String firstName;
-	private String lastName;
+public class Doctor extends Person {	
 	private String title;
 	private String phoneNumber;
 	public Doctor(String firstName, String lastName, String title, String phoneNumber ){
-		this.firstName=firstName;
-		this.lastName=lastName;
+		super(firstName,lastName);
 		this.setTitle(title);
 		this.setPhoneNumber(phoneNumber);
 	}
 	
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-
 	public String getTitle() {
 		return title;
 	}

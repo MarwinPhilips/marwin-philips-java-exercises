@@ -2,26 +2,14 @@ package ch.bfh.philm2.exInterface;
 
 import ch.bfh.philm2.exercises.Adress;
 
-public class Patient implements Person {
-	private String firstName;
-	private String lastName;
+public class Patient extends Person {
 	private int PersID;
 	private Adress adress;
 	public Patient(String firstName, String lastName, int PersID, Adress adress ){
-		this.firstName=firstName;
-		this.lastName=lastName;
+		super(firstName,lastName);
 		this.setPersID(PersID);
 		this.setAdress(adress);
 	}
-	
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-
 	public int getPersID() {
 		return PersID;
 	}
@@ -37,5 +25,4 @@ public class Patient implements Person {
 	public void setAdress(Adress adress) {
 		this.adress = adress;
 	}
-
 }

@@ -1,8 +1,6 @@
 package ch.bfh.philm2.lists;
 
-
-
-public class DoubleNodeList<E> {	
+public class DoubleNodeList<E>{	
 	private DoubleNode<E> firstNode;
 	private DoubleNode<E> lastNode;
 	private int size;

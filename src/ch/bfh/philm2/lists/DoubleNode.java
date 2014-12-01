@@ -1,7 +1,6 @@
 package ch.bfh.philm2.lists;
 
-
-class DoubleNode<T> {
+class DoubleNode<T>{
 	DoubleNode<T> lastNode;
 	DoubleNode<T> nextNode;
 	T element;
