@@ -10,19 +10,17 @@ import trees.interfaces.BasicCollection;
 import trees.interfaces.BinaryTree;
 import trees.interfaces.Position;
 
-
 public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 
 	private BinaryTreeNode<E> root;
 	private ArrayList<Position<E>> positions;
 	private int size = 0;
-	
+
 	@Override
 	public int height() throws EmptyTreeException {
 		return heightOf(root);
 	}
 
-	
 	@Override
 	public List<E> elements() {
 		List<Position<E>> positions = positions();
@@ -42,13 +40,13 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 		preOrder(root);
 		return positions;
 	}
-	
+
 	private BinaryTreeNode<E> getRoot() {
 		if (root == null)
 			throw new EmptyTreeException();
 		return root;
 	}
-	
+
 	@Override
 	public Position<E> root() throws EmptyTreeException {
 		return getRoot();
@@ -67,7 +65,8 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 			throws InvalidPositionException {
 		BinaryTreeNode<E> BinaryTreeNode = isPositionInTree(p);
 		List<Position<E>> positions = new ArrayList<Position<E>>();
-		BinaryTreeNode.getChildren().forEach(x -> positions.add((Position<E>) x));
+		BinaryTreeNode.getChildren().forEach(
+				x -> positions.add((Position<E>) x));
 		return positions;
 	}
 
@@ -135,10 +134,10 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 			throws InvalidPositionException {
 		BinaryTreeNode<E> BinaryTreeNode = isPositionInTree(p);
 		BinaryTreeNode<E> childToAdd = new BinaryTreeNode<E>(e, BinaryTreeNode);
-		if (BinaryTreeNode.getLeftChild() == null){
-		BinaryTreeNode.addLeftChild(childToAdd);
-		}
-		else BinaryTreeNode.addRightChild(childToAdd);
+		if (BinaryTreeNode.getLeftChild() == null) {
+			BinaryTreeNode.addLeftChild(childToAdd);
+		} else
+			BinaryTreeNode.addRightChild(childToAdd);
 		size++;
 		return childToAdd;
 	}
@@ -161,14 +160,14 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	@Override
-	public Position<E> leftChild(Position<E> p) 
-			throws InvalidPositionException {
-			BinaryTreeNode<E> BinaryTreeNode = isPositionInTree(p);
-			return BinaryTreeNode.getLeftChild();
-		}
+	public Position<E> leftChild(Position<E> p) throws InvalidPositionException {
+		BinaryTreeNode<E> BinaryTreeNode = isPositionInTree(p);
+		return BinaryTreeNode.getLeftChild();
+	}
 
 	@Override
-	public Position<E> rightChild(Position<E> p) throws InvalidPositionException {
+	public Position<E> rightChild(Position<E> p)
+			throws InvalidPositionException {
 		BinaryTreeNode<E> BinaryTreeNode = isPositionInTree(p);
 		return BinaryTreeNode.getRightChild();
 	}
@@ -215,11 +214,13 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	public void insertChildren(Position<E> p, E e1, E e2)
 			throws InvalidPositionException {
 		BinaryTreeNode<E> BinaryTreeNode = isPositionInTree(p);
-		BinaryTreeNode<E> childrenToAddLeft = new BinaryTreeNode(e1, BinaryTreeNode);
-		BinaryTreeNode<E> childrenToAddRight = new BinaryTreeNode(e2, BinaryTreeNode);
+		BinaryTreeNode<E> childrenToAddLeft = new BinaryTreeNode(e1,
+				BinaryTreeNode);
+		BinaryTreeNode<E> childrenToAddRight = new BinaryTreeNode(e2,
+				BinaryTreeNode);
 		BinaryTreeNode.addLeftChild(childrenToAddLeft);
 		BinaryTreeNode.addRightChild(childrenToAddRight);
-		size+=2;
+		size += 2;
 	}
 
 	@Override
@@ -231,7 +232,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	public boolean isEmpty() {
 		return size == 0;
 	}
-	
+
 	@Override
 	public String toString() {
 		if (root == null)
@@ -243,27 +244,28 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 
 	private String makeChildrenString(BinaryTreeNode<E> node) {
 		String childrenString = node.element().toString();
-		if (node.getChildren().size() ==1 ) {
-			childrenString += " ("+node.getChildren().get(0).element().toString()+")";
-		}else if (node.getChildren().size()>1){
+		if (node.getChildren().size() == 1) {
+			childrenString += " ("
+					+ node.getChildren().get(0).element().toString() + ")";
+		} else if (node.getChildren().size() > 1) {
 			childrenString += " (";
 			int numberOfChildren = node.getChildren().size();
 			int currentChild = 1;
 			for (BinaryTreeNode<E> child : node.getChildren()) {
-				childrenString +=makeChildrenString(child);
-				
-				if(numberOfChildren>currentChild){
-					childrenString+=" ";
-				}else{
-					childrenString+=")";
+				childrenString += makeChildrenString(child);
+
+				if (numberOfChildren > currentChild) {
+					childrenString += " ";
+				} else {
+					childrenString += ")";
 				}
 				currentChild++;
 			}
-			
+
 		}
 		return childrenString;
 	}
-	
+
 	private int heightOf(BinaryTreeNode<E> node) {
 		if (isExternal(node))
 			return 0;
@@ -276,7 +278,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 			return h;
 		}
 	}
-	
+
 	private int max(int first, int second) {
 		if (first >= second)
 			return first;
@@ -288,11 +290,11 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 		for (BinaryTreeNode<E> q : p.getChildren())
 			preOrder(q);
 	}
-	
+
 	private void visit(BinaryTreeNode<E> p) {
 		positions.add(p);
 	}
-	
+
 	private BinaryTreeNode<E> isPositionInTree(Position<E> element) {
 		if (!(element instanceof BinaryTreeNode)) {
 			throw new InvalidPositionException();
@@ -301,7 +303,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 		isBinaryTreeNodeInTree(BinaryTreeNode);
 		return BinaryTreeNode;
 	}
-	
+
 	private void isBinaryTreeNodeInTree(BinaryTreeNode<E> BinaryTreeNode) {
 		if (BinaryTreeNode == getRoot())
 			return;
@@ -312,7 +314,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 		}
 		throw new InvalidPositionException();
 	}
-	
+
 	private void getDescendants(BinaryTreeNode<E> node,
 			ArrayList<Position<E>> descendants) {
 		for (BinaryTreeNode<E> child : node.getChildren()) {
@@ -321,5 +323,4 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 		}
 	}
 
-	
 }

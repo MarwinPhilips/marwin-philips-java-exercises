@@ -13,8 +13,8 @@ public class StopWatch extends BorderPane {
 	private Button btnStop;
 	private Button btnReset;
 	private Timer timer;
-	private Label sekunden;
-	private Label zeit;
+	private Label lblSekunden;
+	private Label lblZeit;
 
 	public StopWatch() {
 		timer = new Timer(50, this);
@@ -22,12 +22,12 @@ public class StopWatch extends BorderPane {
 	}
 
 	private void CreateGui() {
-		sekunden = new Label("Sekunden: ");
-		zeit = new Label("0:00");
+		lblSekunden = new Label("Sekunden: ");
+		lblZeit = new Label("0:00");
 		HBox centerBox = new HBox(20);
 		setCenter(centerBox);
-		centerBox.getChildren().add(sekunden);
-		centerBox.getChildren().add(zeit);
+		centerBox.getChildren().add(lblSekunden);
+		centerBox.getChildren().add(lblZeit);
 
 		HBox hbox = new HBox(20);
 		setBottom(hbox);
@@ -48,21 +48,21 @@ public class StopWatch extends BorderPane {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				zeit.setText(timeString);
-				if(timer.isRunning()){
+				lblZeit.setText(timeString);
+				if (timer.isRunning()) {
 					btnStart.disableProperty().set(true);
 					btnStop.disableProperty().set(false);
-				}else{
+				} else {
 					btnStart.disableProperty().set(false);
 					btnStop.disableProperty().set(true);
 				}
-				if(timeString.equals("0:0")){
+				if (timeString.equals("0:0")) {
 					btnReset.disableProperty().set(true);
-				}else{
+				} else {
 					btnReset.disableProperty().set(false);
 				}
 			}
 		});
 	}
-	
+
 }

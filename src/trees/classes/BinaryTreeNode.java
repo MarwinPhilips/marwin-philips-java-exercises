@@ -34,11 +34,11 @@ public class BinaryTreeNode<E> implements Position<E> {
 	}
 
 	public void addLeftChild(BinaryTreeNode<E> leftChild) {
-		leftChild.addLeftChild(leftChild);
+		this.leftChild = leftChild;
 	}
 
 	public void addRightChild(BinaryTreeNode<E> rightChild) {
-		rightChild.addRightChild(rightChild);
+		this.rightChild = rightChild;
 	}
 
 	public BinaryTreeNode<E> getLeftChild() {
@@ -51,8 +51,10 @@ public class BinaryTreeNode<E> implements Position<E> {
 
 	public List<BinaryTreeNode<E>> getChildren() {
 		ArrayList<BinaryTreeNode<E>> ret = new ArrayList<BinaryTreeNode<E>>();
-		ret.add(getLeftChild());
-		ret.add(getRightChild());
+		if (getLeftChild() != null)
+			ret.add(getLeftChild());
+		if (getRightChild() != null)
+			ret.add(getRightChild());
 		return ret;
 	}
 }
