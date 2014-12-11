@@ -214,9 +214,9 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	public void insertChildren(Position<E> p, E e1, E e2)
 			throws InvalidPositionException {
 		BinaryTreeNode<E> BinaryTreeNode = isPositionInTree(p);
-		BinaryTreeNode<E> childrenToAddLeft = new BinaryTreeNode(e1,
+		BinaryTreeNode<E> childrenToAddLeft = new BinaryTreeNode<E>(e1,
 				BinaryTreeNode);
-		BinaryTreeNode<E> childrenToAddRight = new BinaryTreeNode(e2,
+		BinaryTreeNode<E> childrenToAddRight = new BinaryTreeNode<E>(e2,
 				BinaryTreeNode);
 		BinaryTreeNode.addLeftChild(childrenToAddLeft);
 		BinaryTreeNode.addRightChild(childrenToAddRight);

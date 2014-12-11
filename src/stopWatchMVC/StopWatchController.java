@@ -1,54 +1,71 @@
-package javaFX;
+package stopWatchMVC;
+
+import java.util.Observable;
+import java.util.Observer;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class StopWatch extends BorderPane {
+public class StopWatchController extends Stage implements Observer {
 	private Button btnStart;
 	private Button btnStop;
 	private Button btnReset;
 	private Timer timer;
-	private Label lblSekunden;
-	private Label lblZeit;
 
-	public StopWatch() {
-		timer = new Timer(50, this);
-		CreateGui();
+	public StopWatchController(Timer timer) {
+		this.timer = timer;
+		timer.addObserver(this);
+		createGUI();
+
 	}
 
-	private void CreateGui() {
-		lblSekunden = new Label("Sekunden: ");
-		lblZeit = new Label("0:00");
-		HBox centerBox = new HBox(20);
-		setCenter(centerBox);
-		centerBox.getChildren().add(lblSekunden);
-		centerBox.getChildren().add(lblZeit);
+	private void createGUI() {
+		BorderPane bp = new BorderPane();
+		Scene scene = new Scene(bp, 200, 50);
+		setScene(scene);
+		setY(100);
+		setX(100);
 
 		HBox hbox = new HBox(20);
-		setBottom(hbox);
+		bp.setCenter(hbox);
 		btnStart = new Button("Start");
-		btnStart.addEventHandler(ActionEvent.ACTION, event -> timer.start());
+		btnStart.addEventHandler(ActionEvent.ACTION, event -> start());
 		btnStop = new Button("Stop");
 		btnStop.disableProperty().set(true);
-		btnStop.addEventHandler(ActionEvent.ACTION, event -> timer.stop());
+		btnStop.addEventHandler(ActionEvent.ACTION, event -> stop());
 		btnReset = new Button("Reset");
 		btnReset.disableProperty().set(true);
-		btnReset.addEventHandler(ActionEvent.ACTION, event -> timer.reset());
+		btnReset.addEventHandler(ActionEvent.ACTION, event -> reset());
 		hbox.getChildren().add(btnStart);
 		hbox.getChildren().add(btnStop);
 		hbox.getChildren().add(btnReset);
+		show();
+
 	}
 
-	public void update(String timeString) {
+	private void reset() {
+		timer.reset();
+	}
+
+	private void stop() {
+		timer.stop();
+	}
+
+	private void start() {
+		timer.start();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		String timeString = timer.getTimeString();
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				lblZeit.setText(timeString);
 				if (timer.isRunning()) {
 					btnStart.disableProperty().set(true);
 					btnStop.disableProperty().set(false);
@@ -63,6 +80,7 @@ public class StopWatch extends BorderPane {
 				}
 			}
 		});
+
 	}
 
 }

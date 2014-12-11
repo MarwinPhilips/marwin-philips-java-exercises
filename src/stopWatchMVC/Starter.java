@@ -1,24 +1,23 @@
 package stopWatchMVC;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Starter extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		StopWatch root = new StopWatch();
-		Scene scene = new Scene(root, 250, 250);
-		primaryStage.setScene(scene);		
-		primaryStage.show();		
+		Timer timer = new Timer(50);
+		StopWatchController swc = new StopWatchController(timer);
+		StopWatch sw1 = new StopWatch(timer, swc);		
+		StopWatch sw2 = new StopWatch(timer, swc);
+		StopWatch sw3 = new StopWatch(timer, swc);
+		sw1.setX(200);
+		sw1.setY(200);
+		sw2.setX(300);
+		sw2.setY(300);
+		sw3.setX(400);
+		sw3.setY(400);
 	}
 	
 	public static void main(String[]args){

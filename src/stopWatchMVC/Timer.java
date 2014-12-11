@@ -1,23 +1,21 @@
 package stopWatchMVC;
 
-import javafx.beans.property.StringProperty;
+import java.util.Observable;
 
-public class Timer implements Runnable {
+
+public class Timer extends Observable implements Runnable {
 	private int millisToWait;
 	private int ticks = 0;
 	private Thread t;
-	private StopWatch gui;
 	
-	public Timer(int millisToWait, StopWatch gui) {
+	public Timer(int millisToWait) {
 		this.millisToWait = millisToWait;
-		this.gui = gui;
 	}
 
 	@Override
 	public void run() {
-		while (t != null) {
-			
-			updateGui();
+		while (t != null) {			
+			doNotify();
 			ticks++;
 			try {
 				Thread.sleep(millisToWait);
@@ -38,23 +36,23 @@ public class Timer implements Runnable {
 
 	public void stop() {
 		t = null;
-		updateGui();
+		doNotify();
 	}
 
 	public void reset() {
 		ticks = 0;
-		updateGui();
+		doNotify();
 	}
-
-	public void updateGui() {		
-		gui.update(getTimeString());
+	private void doNotify(){
+		setChanged();
+		notifyObservers();
 	}
 
 	private int getTimeInMillis() {
 		return ticks * millisToWait;
 	}
 
-	private String getTimeString() {
+	public String getTimeString() {
 		int timeInMillis = getTimeInMillis();
 		return (timeInMillis / 1000) + ":" + (timeInMillis % 1000);
 	}
@@ -62,4 +60,5 @@ public class Timer implements Runnable {
 	public boolean isRunning(){
 		return t!=null;
 	}
+
 }

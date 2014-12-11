@@ -1,66 +1,49 @@
 package stopWatchMVC;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class StopWatch extends BorderPane {
-	private Button btnStart;
-	private Button btnStop;
-	private Button btnReset;
+public class StopWatch extends Stage implements Observer {
 	private Timer timer;
 	private Label lblSekunden;
 	private Label lblZeit;
+	private Stage parentStage;
 
-	public StopWatch() {
-		timer = new Timer(50, this);
+	public StopWatch(Timer timer, Stage parentStage) {
+		this.parentStage=parentStage;
+		this.timer= timer;
+		timer.addObserver(this);
 		CreateGui();
 	}
 
 	private void CreateGui() {
+		BorderPane bp = new BorderPane();
+		Scene scene = new Scene(bp, 150, 50);
+		setScene(scene);
 		lblSekunden = new Label("Sekunden: ");
 		lblZeit = new Label("0:00");
 		HBox centerBox = new HBox(20);
-		setCenter(centerBox);
+		bp.setCenter(centerBox);
 		centerBox.getChildren().add(lblSekunden);
 		centerBox.getChildren().add(lblZeit);
-
-		HBox hbox = new HBox(20);
-		setBottom(hbox);
-		btnStart = new Button("Start");
-		btnStart.addEventHandler(ActionEvent.ACTION, event -> timer.start());
-		btnStop = new Button("Stop");
-		btnStop.disableProperty().set(true);
-		btnStop.addEventHandler(ActionEvent.ACTION, event -> timer.stop());
-		btnReset = new Button("Reset");
-		btnReset.disableProperty().set(true);
-		btnReset.addEventHandler(ActionEvent.ACTION, event -> timer.reset());
-		hbox.getChildren().add(btnStart);
-		hbox.getChildren().add(btnStop);
-		hbox.getChildren().add(btnReset);
+		initOwner(parentStage);
+		show();
 	}
 
-	public void update(String timeString) {
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		String timeString = timer.getTimeString();
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
 				lblZeit.setText(timeString);
-				if (timer.isRunning()) {
-					btnStart.disableProperty().set(true);
-					btnStop.disableProperty().set(false);
-				} else {
-					btnStart.disableProperty().set(false);
-					btnStop.disableProperty().set(true);
-				}
-				if (timeString.equals("0:0")) {
-					btnReset.disableProperty().set(true);
-				} else {
-					btnReset.disableProperty().set(false);
-				}
 			}
 		});
 	}
