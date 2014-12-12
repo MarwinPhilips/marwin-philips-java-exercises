@@ -36,7 +36,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 	//i'm a text!
 	/*
-	 * Returns a list of all elements
+	 * Returns a list of all element
 	 * @see trees.interfaces.Tree#elements()
 	 */
 	@Override
