@@ -34,7 +34,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	public int height() throws EmptyTreeException {
 		return heightOf(root);
 	}
-
+	//i'm a text!
 	/*
 	 * Returns a list of all elements
 	 * @see trees.interfaces.Tree#elements()
