@@ -20,6 +20,10 @@ import trees.interfaces.Tree;
 */
 
 public class LinkedTree<E> implements BasicCollection, Tree<E> {
+	
+	/*
+	 * Parameter
+	 */
 	private TreeNode<E> root;
 	private ArrayList<Position<E>> positions;
 	private int size = 0;
