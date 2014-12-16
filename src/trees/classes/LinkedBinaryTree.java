@@ -13,7 +13,8 @@ import trees.interfaces.Position;
 /**
 * ...
 *
-* @author  Marwin Philips, Mete Turna
+* @author  Marwin Philips
+* @author  Mete Turna
 * @version 1.0
 * @since   11.12.2014
 */
@@ -176,7 +177,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * 	Returns the depth of node p
+	 * Returns the depth of node p
 	 */
 	private int depth(BinaryTreeNode<E> node) {
 		if (isRoot(node))
@@ -185,7 +186,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * 	Adds a root which stores e to an empty tree
+	 * Adds a root which stores e to an empty tree
 	 * @see trees.interfaces.Tree#addRoot(java.lang.Object)
 	 */
 	@Override
@@ -216,7 +217,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * 	stores e at node p
+	 * stores e at node p
 	 * @see trees.interfaces.Tree#replaceElement(trees.interfaces.Position, java.lang.Object)
 	 */
 	@Override
@@ -227,7 +228,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * 	Swaps the element stored at p and q
+	 * Swaps the element stored at p and q
 	 * @see trees.interfaces.Tree#swapElements(trees.interfaces.Position, trees.interfaces.Position)
 	 */
 	@Override
@@ -444,7 +445,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * 
+	 * If the element of BinaryTreeNode then return or give a exception
 	 */
 	private void isBinaryTreeNodeInTree(BinaryTreeNode<E> BinaryTreeNode) {
 		if (BinaryTreeNode == getRoot())
@@ -458,7 +459,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * 
+	 * Get the descendants of the child
 	 */
 	private void getDescendants(BinaryTreeNode<E> node,
 			ArrayList<Position<E>> descendants) {
