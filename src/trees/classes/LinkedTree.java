@@ -10,8 +10,8 @@ import trees.interfaces.Position;
 import trees.interfaces.Tree;
 
 /**
-* This class implements the class BasicColletion and BinaryTree.
-* 
+* Represents a Linked tree which has exactly one root TreeNode which can have 0..n children.
+* Each of this children can have 0..n children and so on.
 *
 * @author  Marwin Philips
 * @author  Mete Turna
@@ -29,16 +29,16 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	private int size = 0;
 
 	/*
-	 * Returns the root node (if it exists!) or give an exception
+	 * Returns the root node (if it exists!) or throw an EmptyTreeException
 	 */
-	private TreeNode<E> getRoot() {
+	private TreeNode<E> getRoot() throws EmptyTreeException {
 		if (root == null)
 			throw new EmptyTreeException();
 		return root;
 	}
 
 	/*
-	 * Return the height of the tree or give an exception
+	 * Return the height of the tree. Throws exception when tree is Empty.
 	 * @see trees.interfaces.Tree#height()
 	 */
 	@Override
@@ -75,7 +75,7 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Returns the position of the root node or give an exception
+	 * Returns the position of the root node or throws an EmptyTreeException when the tree is empty.
 	 * @see trees.interfaces.Tree#root()
 	 */
 	@Override
@@ -84,7 +84,7 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Return the parent of node p or give an exception(non-Javadoc)
+	 * Return the parent of node p or throws an InvalidPositionException if p is not in the tree.
 	 * @see trees.interfaces.Tree#parent(trees.interfaces.Position)
 	 */
 	@Override
@@ -96,7 +96,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Returns a list of all children of p or give an exception
+	 * Returns a list of all children of p or throws an InvalidPositionException
+	 * if p is not in the tree.
 	 * @see trees.interfaces.Tree#children(trees.interfaces.Position)
 	 */
 	@Override
@@ -109,7 +110,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Returns a list of all descendants of p or give an exception
+	 * Returns a list of all descendants of p or throws an InvalidPositionException
+	 * if p is not in the tree.
 	 * @see trees.interfaces.Tree#descendants(trees.interfaces.Position)
 	 */
 	@Override
@@ -122,7 +124,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Returns a list of all ancestors of p 
+	 * Returns a list of all ancestors of p or throws an InvalidPositionException
+	 * if p is not in the tree.
 	 * @see trees.interfaces.Tree#ancestors(trees.interfaces.Position)
 	 */
 	@Override
@@ -137,7 +140,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Indicates whether p is a root or give an exception
+	 * Indicates whether p is a root or or throws an InvalidPositionException
+	 * if p is not in the tree.
 	 * @see trees.interfaces.Tree#isRoot(trees.interfaces.Position)
 	 */
 	@Override
@@ -147,7 +151,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Indicates whether p is an internal node or give an exception
+	 * Indicates whether p is an internal node or throws an InvalidPositionException
+	 * if p is not in the tree.
 	 * @see trees.interfaces.Tree#isInternal(trees.interfaces.Position)
 	 */
 	@Override
@@ -157,7 +162,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Indicates whether p is an external node or give an exception
+	 * Indicates whether p is an external node or throws an InvalidPositionException
+	 * if p is not in the tree.
 	 * @see trees.interfaces.Tree#isExternal(trees.interfaces.Position)
 	 */
 	@Override
@@ -167,7 +173,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Returns a list of all descendants of p or give an exception
+	 * Returns a list of all descendants of p or throws an InvalidPositionException
+	 * if p is not in the tree.
 	 * @see trees.interfaces.Tree#depth(trees.interfaces.Position)
 	 */
 	@Override
@@ -177,7 +184,7 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * 	Returns the depth of node p
+	 * 	Returns over recursion the depth of node p
 	 */
 	private int depth(TreeNode<E> node) {
 		if (isRoot(node))
@@ -186,7 +193,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Adds a root which stores e to an empty tree
+	 * Adds a root which stores e to an empty tree. 
+	 * Throws UnemptyTreeException If there is already a root
 	 * @see trees.interfaces.Tree#addRoot(java.lang.Object)
 	 */
 	@Override
@@ -199,7 +207,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Insert a new child p which stores e
+	 * Insert a new child p which stores e or throws an InvalidPositionException if 
+	 * p is not in the tree.
 	 * @see trees.interfaces.Tree#insertChild(trees.interfaces.Position, java.lang.Object)
 	 */
 	@Override
@@ -213,7 +222,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * stores e at node p
+	 * stores e at node p or throws an InvalidPositionException if 
+	 * p is not in the tree.
 	 * @see trees.interfaces.Tree#replaceElement(trees.interfaces.Position, java.lang.Object)
 	 */
 	@Override
@@ -224,7 +234,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Swaps the element stored at p and q
+	 * Swaps the element stored at p and q or throws an InvalidPositionException if 
+	 * p or q is not in the tree.
 	 * @see trees.interfaces.Tree#swapElements(trees.interfaces.Position, trees.interfaces.Position)
 	 */
 	@Override
@@ -255,8 +266,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 		return size == 0;
 	}
 
-	/*
-	 * Returns the Values in the overwritten method toString()
+	/**
+	 * Returns the tree as a String, separated with spaces an ().
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -267,16 +278,25 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 			return root.element().toString();
 		return makeChildrenString(root);
 	}
-
+	/**
+	 * Builds recursively the String of the whole tree, separated with spaces and ().
+	 * 
+	 */
 	private String makeChildrenString(TreeNode<E> node) {
 		String childrenString = node.element().toString();
+		// If there is only one child, add " (child.toString())"
 		if (node.getChildren().size() ==1 ) {
 			childrenString += " ("+node.getChildren().get(0).element().toString()+")";
-		}else if (node.getChildren().size()>1){
+		}
+		// if there is more than one child add " ( child1 child2 child3)"
+		else if (node.getChildren().size()>1){
 			childrenString += " (";
 			int numberOfChildren = node.getChildren().size();
 			int currentChild = 1;
+			// if the current node's children have more childs, we have to add them to the
+			// string.
 			for (TreeNode<E> child : node.getChildren()) {
+				
 				childrenString +=makeChildrenString(child);
 				
 				if(numberOfChildren>currentChild){
@@ -308,7 +328,7 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * help method
+	 * returns the larger one of first and second.
 	 */
 	private int max(int first, int second) {
 		if (first >= second)
@@ -326,7 +346,7 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Visiting a node p
+	 * Visiting a node p. Used to build positions with all elements in tree.
 	 */
 	private void visit(TreeNode<E> p) {
 		positions.add(p);
@@ -345,7 +365,8 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * If the element of TreeNode then return or give a exception
+	 * If the treeNode or one of its parent is the same as root it return,
+	 * Otherwise throws InvalidPositionException
 	 */
 	private void isTreeNodeInTree(TreeNode<E> treeNode) {
 		if (treeNode == getRoot())
@@ -359,7 +380,7 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 	}
 
 	/*
-	 * Get the descendants of the child
+	 * Get the descendants of the child.
 	 */
 	private void getDescendants(TreeNode<E> node,
 			ArrayList<Position<E>> descendants) {

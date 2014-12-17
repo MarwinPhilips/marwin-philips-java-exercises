@@ -4,8 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import trees.interfaces.Position;
-
+/**
+ * Represents a TreeNode which can have a maximum of two Children, the right and the left child.
+ * Every TreeNode has a parent or is the root of the tree.
+ * 
+ * @author Marwin Philips
+ * @author Mete Turna
+ * @version 1.0
+ * @since 11.12.2014
+ * 
+ */
 public class BinaryTreeNode<E> implements Position<E> {
+	/**
+	 * The element stored in this TreeNode
+	 */
 	private E element;
 	private BinaryTreeNode<E> parent;
 	private BinaryTreeNode<E> leftChild;
@@ -48,7 +60,11 @@ public class BinaryTreeNode<E> implements Position<E> {
 	public BinaryTreeNode<E> getRightChild() {
 		return rightChild;
 	}
-
+	/**
+	 * Returns the children of this TreeNode. 
+	 * If there are none, returns an empty List<BinaryTreeNode<E>>.
+	 * @return all children of this BinaryTreeNode
+	 */
 	public List<BinaryTreeNode<E>> getChildren() {
 		ArrayList<BinaryTreeNode<E>> ret = new ArrayList<BinaryTreeNode<E>>();
 		if (getLeftChild() != null)

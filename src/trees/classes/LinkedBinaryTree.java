@@ -11,33 +11,42 @@ import trees.interfaces.BinaryTree;
 import trees.interfaces.Position;
 
 /**
-* ...
-*
-* @author  Marwin Philips
-* @author  Mete Turna
-* @version 1.0
-* @since   11.12.2014
-*/
+ * Represents a Linked tree which has exactly one root TreeNode which can have 0, 1 or 2 children.
+ * Each of this children can have 0, 1 or 2 children and so on.
+ *
+ * @author Marwin Philips
+ * @author Mete Turna
+ * @version 1.0
+ * @since 11.12.2014
+ */
 public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 
 	/*
-	 * Parameter
+	 * The root of the linkedBinaryTree
 	 */
 	private BinaryTreeNode<E> root;
+	/*
+	 * contains all position of the tree, after calling getPositions()
+	 */
 	private ArrayList<Position<E>> positions;
+	/*
+	 * the current size of the tree.
+	 */
 	private int size = 0;
 
 	/*
-	 * Maximum depth of the Tree or give an exception
+	 * Returns maximum depth of the Tree or throws an EmptyTreeException
+	 * 
 	 * @see trees.interfaces.Tree#height()
 	 */
 	@Override
 	public int height() throws EmptyTreeException {
 		return heightOf(root);
 	}
-	//i'm a text!
+
 	/*
-	 * Returns a list of all elements
+	 * Returns a list of all elements in the tree
+	 * 
 	 * @see trees.interfaces.Tree#elements()
 	 */
 	@Override
@@ -52,7 +61,9 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns a list of all positions
+	 * Returns a list of all positions. Returns a List with Size()=0 when the
+	 * tree is empty.
+	 * 
 	 * @see trees.interfaces.Tree#positions()
 	 */
 	@Override
@@ -65,7 +76,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns the root node (if it exists!) or give an exception
+	 * Returns the root node (if it exists!) or throws an EmptyTreeException.
 	 */
 	private BinaryTreeNode<E> getRoot() {
 		if (root == null)
@@ -74,7 +85,8 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns the position of the root node or give an exception
+	 * Returns the position of the root node or throws an EmptyTreeException. *
+	 * 
 	 * @see trees.interfaces.Tree#root()
 	 */
 	@Override
@@ -83,7 +95,8 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Return the parent of node p or give an exception
+	 * Return the parent of node p or throws an InvalidPositionException
+	 * 
 	 * @see trees.interfaces.Tree#parent(trees.interfaces.Position)
 	 */
 	@Override
@@ -95,7 +108,8 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns a list of all children of p or give an exception
+	 * Returns a list of all children of p or throws an InvalidPositionException
+	 * 
 	 * @see trees.interfaces.Tree#children(trees.interfaces.Position)
 	 */
 	@Override
@@ -109,7 +123,9 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns a list of all descendants of p or give an exception
+	 * Returns a list of all descendants of p or throws an
+	 * InvalidPositionException
+	 * 
 	 * @see trees.interfaces.Tree#descendants(trees.interfaces.Position)
 	 */
 	@Override
@@ -122,11 +138,14 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns a list of all ancestors of p 
+	 * Returns a list of all ancestors of p or throws an
+	 * InvalidPositionException
+	 * 
 	 * @see trees.interfaces.Tree#ancestors(trees.interfaces.Position)
 	 */
 	@Override
-	public List<Position<E>> ancestors(Position<E> p) {
+	public List<Position<E>> ancestors(Position<E> p)
+			throws InvalidPositionException {
 		BinaryTreeNode<E> BinaryTreeNode = isPositionInTree(p);
 		ArrayList<Position<E>> ancestors = new ArrayList<Position<E>>();
 		while (BinaryTreeNode.getParent() != null) {
@@ -137,7 +156,8 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Indicates whether p is a root or give an exception
+	 * Indicates whether p is a root or throws an InvalidPositionException
+	 * 
 	 * @see trees.interfaces.Tree#isRoot(trees.interfaces.Position)
 	 */
 	@Override
@@ -147,7 +167,9 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * 	Indicates whether p is an internal node or give an exception
+	 * Indicates whether p is an internal node or throws an
+	 * InvalidPositionException
+	 * 
 	 * @see trees.interfaces.Tree#isInternal(trees.interfaces.Position)
 	 */
 	@Override
@@ -157,7 +179,9 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Indicates whether p is an external node or give an exception
+	 * Indicates whether p is an external node or throws an
+	 * InvalidPositionException
+	 * 
 	 * @see trees.interfaces.Tree#isExternal(trees.interfaces.Position)
 	 */
 	@Override
@@ -167,7 +191,9 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns a list of all descendants of p or give an exception
+	 * Returns a list of all descendants of p or throws an
+	 * InvalidPositionException
+	 * 
 	 * @see trees.interfaces.Tree#depth(trees.interfaces.Position)
 	 */
 	@Override
@@ -186,7 +212,9 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Adds a root which stores e to an empty tree
+	 * Adds a root which stores e to an empty tree. Throws UnemptyTreeException
+	 * when the Parent is not null.
+	 * 
 	 * @see trees.interfaces.Tree#addRoot(java.lang.Object)
 	 */
 	@Override
@@ -199,9 +227,12 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Insert a new child p which stores e, when the left node is empty else insert the 
-	 * new child to the right node
-	 * @see trees.interfaces.Tree#insertChild(trees.interfaces.Position, java.lang.Object)
+	 * Insert a new child p which stores e, when the left node is empty else
+	 * insert the new child to the right node. Throws IvalidPositionException
+	 * when the Position is not in the tree.
+	 * 
+	 * @see trees.interfaces.Tree#insertChild(trees.interfaces.Position,
+	 * java.lang.Object)
 	 */
 	@Override
 	public Position<E> insertChild(Position<E> p, E e)
@@ -217,8 +248,10 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * stores e at node p
-	 * @see trees.interfaces.Tree#replaceElement(trees.interfaces.Position, java.lang.Object)
+	 * stores e at Position p or throws an InvalidPositionException
+	 * 
+	 * @see trees.interfaces.Tree#replaceElement(trees.interfaces.Position,
+	 * java.lang.Object)
 	 */
 	@Override
 	public E replaceElement(Position<E> p, E e) throws InvalidPositionException {
@@ -228,8 +261,11 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Swaps the element stored at p and q
-	 * @see trees.interfaces.Tree#swapElements(trees.interfaces.Position, trees.interfaces.Position)
+	 * Swaps the element stored at p and q or throws an
+	 * InvalidPositionException, if either p or q is not in the tree.
+	 * 
+	 * @see trees.interfaces.Tree#swapElements(trees.interfaces.Position,
+	 * trees.interfaces.Position)
 	 */
 	@Override
 	public void swapElements(Position<E> p, Position<E> q)
@@ -242,7 +278,9 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns the left child of p (if it exists)
+	 * Returns the left child of p (if it exists) or throws an
+	 * InvalidPositionException
+	 * 
 	 * @see trees.interfaces.BinaryTree#leftChild(trees.interfaces.Position)
 	 */
 	@Override
@@ -252,7 +290,9 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns the right child of p (if it exists)
+	 * Returns the right child of p (if it exists) or throws an
+	 * InvalidPositionException
+	 * 
 	 * @see trees.interfaces.BinaryTree#rightChild(trees.interfaces.Position)
 	 */
 	@Override
@@ -263,16 +303,26 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Returns the sibling of p (if it exists)
+	 * Returns the sibling of p (if it exists) or throws an
+	 * InvalidPositionException
+	 * 
 	 * @see trees.interfaces.BinaryTree#sibling(trees.interfaces.Position)
 	 */
 	@Override
 	public Position<E> sibling(Position<E> p) throws InvalidPositionException {
-		return null;
+		BinaryTreeNode<E> BinaryTreeNode = isPositionInTree(p);
+		if (BinaryTreeNode == getRoot())
+			throw new InvalidPositionException();
+		BinaryTreeNode<E> parentNode = BinaryTreeNode.getParent();
+		if (parentNode.getLeftChild() == BinaryTreeNode)
+			return parentNode.getRightChild();
+		return parentNode.getLeftChild();
+
 	}
 
 	/*
-	 * Checks whether p has a left child
+	 * Checks whether p has a left child or throws an InvalidPositionException
+	 * 
 	 * @see trees.interfaces.BinaryTree#hasLeft(trees.interfaces.Position)
 	 */
 	@Override
@@ -282,7 +332,8 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Checks whether p has a right child
+	 * Checks whether p has a right child or throws an InvalidPositionException
+	 * 
 	 * @see trees.interfaces.BinaryTree#hasRight(trees.interfaces.Position)
 	 */
 	@Override
@@ -292,8 +343,10 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Adds a left child to p (unless it exists)
-	 * @see trees.interfaces.BinaryTree#insertLeft(trees.interfaces.Position, java.lang.Object)
+	 * Adds a left child to p (unless it exists) or throws an InvalidPositionException
+	 * 
+	 * @see trees.interfaces.BinaryTree#insertLeft(trees.interfaces.Position,
+	 * java.lang.Object)
 	 */
 	@Override
 	public Position<E> insertLeft(Position<E> p, E e)
@@ -306,8 +359,10 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Adds a right child to p (unless it exists)
-	 * @see trees.interfaces.BinaryTree#insertRight(trees.interfaces.Position, java.lang.Object)
+	 * Adds a right child to p (unless it exists) or throws an InvalidPositionException
+	 * 
+	 * @see trees.interfaces.BinaryTree#insertRight(trees.interfaces.Position,
+	 * java.lang.Object)
 	 */
 	@Override
 	public Position<E> insertRight(Position<E> p, E e)
@@ -320,8 +375,11 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Adds a left and a right child to an external node p
-	 * @see trees.interfaces.BinaryTree#insertChildren(trees.interfaces.Position, java.lang.Object, java.lang.Object)
+	 * Adds a left and a right child to an external node p or throws an InvalidPositionException
+	 * 
+	 * @see
+	 * trees.interfaces.BinaryTree#insertChildren(trees.interfaces.Position,
+	 * java.lang.Object, java.lang.Object)
 	 */
 	@Override
 	public void insertChildren(Position<E> p, E e1, E e2)
@@ -337,7 +395,8 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * 	Returns the number of nodes
+	 * Returns the number of nodes
+	 * 
 	 * @see trees.interfaces.BasicCollection#size()
 	 */
 	@Override
@@ -346,7 +405,8 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * 	Indicates whether the tree is empty
+	 * Indicates whether the tree is empty
+	 * 
 	 * @see trees.interfaces.BasicCollection#isEmpty()
 	 */
 	@Override
@@ -356,6 +416,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 
 	/*
 	 * Returns the Values in the overwritten method toString()
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -366,7 +427,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 			return root.element().toString();
 		return makeChildrenString(root);
 	}
-	
+
 	private String makeChildrenString(BinaryTreeNode<E> node) {
 		String childrenString = node.element().toString();
 		if (node.getChildren().size() == 1) {
@@ -424,7 +485,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 		for (BinaryTreeNode<E> q : p.getChildren())
 			preOrder(q);
 	}
-	
+
 	/*
 	 * Visiting a node p
 	 */
@@ -433,7 +494,8 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * Return the Position of the element in the BinaryTreeNode or give an exception
+	 * Return the Position of the element in the BinaryTreeNode or give an
+	 * exception
 	 */
 	private BinaryTreeNode<E> isPositionInTree(Position<E> element) {
 		if (!(element instanceof BinaryTreeNode)) {
@@ -445,7 +507,7 @@ public class LinkedBinaryTree<E> implements BasicCollection, BinaryTree<E> {
 	}
 
 	/*
-	 * If the element of BinaryTreeNode then return or give a exception
+	 * If the element of BinaryTreeNode then return or throws an InvalidPositionException
 	 */
 	private void isBinaryTreeNodeInTree(BinaryTreeNode<E> BinaryTreeNode) {
 		if (BinaryTreeNode == getRoot())
