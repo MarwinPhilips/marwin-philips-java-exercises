@@ -268,6 +268,7 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 
 	/**
 	 * Returns the tree as a String, separated with spaces an ().
+	 * @DEMO
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -313,6 +314,7 @@ public class LinkedTree<E> implements BasicCollection, Tree<E> {
 
 	/*
 	 * return the height of the subtree (p).
+	 * @DEMO
 	 */
 	private int heightOf(TreeNode<E> node) {
 		if (isExternal(node))

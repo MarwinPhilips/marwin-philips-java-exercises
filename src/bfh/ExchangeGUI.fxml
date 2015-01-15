@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="193.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bfh.Gui">
+	<center>
+		<VBox alignment="CENTER" prefHeight="158.0" prefWidth="491.0">
+			<children>
+				<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+					<children>
+						<Label text="Currency">
+							<HBox.margin>
+								<Insets right="10.0" />
+							</HBox.margin>
+						</Label>
+						<ComboBox fx:id="cbCurrencies" prefHeight="25.0" prefWidth="72.0">
+							<HBox.margin>
+								<Insets right="10.0" />
+							</HBox.margin>
+						</ComboBox>
+						<Button fx:id="btnSelect" mnemonicParsing="false" onAction="#onSelect" text="Select" />
+					</children>
+					<opaqueInsets>
+						<Insets />
+					</opaqueInsets>
+					<VBox.margin>
+						<Insets />
+					</VBox.margin>
+				</HBox>
+				<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+					<children>
+						<Label fx:id="lblCurrency" text="Label" />
+					</children>
+				</HBox>
+				<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+					<children>
+						<Button fx:id="btnStart" mnemonicParsing="false" onAction="#onStart" text="Start">
+							<HBox.margin>
+								<Insets right="5.0" />
+							</HBox.margin>
+						</Button>
+						<Button fx:id="btnStop" mnemonicParsing="false" onAction="#onStop" text="Stop" />
+					</children>
+				</HBox>
+			</children>
+		</VBox>
+	</center>
+   <bottom>
+      <VBox maxHeight="37.0" prefHeight="37.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Line endX="500.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Line>
+      		<HBox maxHeight="37.0" prefHeight="37.0" prefWidth="491.0">
+      			<children>
+      				<Label text="Currency">
+      					<HBox.margin>
+      						<Insets right="10.0" />
+      					</HBox.margin>
+      				</Label>
+      				<TextField fx:id="txtCurrency">
+      					<HBox.margin>
+      						<Insets right="10.0" />
+      					</HBox.margin>
+      				</TextField>
+      				<Label text="Initial Rate">
+      					<HBox.margin>
+      						<Insets right="10.0" />
+      					</HBox.margin>
+      				</Label>
+      				<TextField fx:id="txtInitialRate">
+      					<HBox.margin>
+      						<Insets right="10.0" />
+      					</HBox.margin>
+      				</TextField>
+      				<Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onAdd" text="Add" />
+      			</children>
+      		</HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
