@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+	<persistence-unit name="family" transaction-type="RESOURCE_LOCAL">
+		<class>ch.bfh.btx8053.jpa.family.Person</class>
+		<class>ch.bfh.btx8053.jpa.family.Family</class>
+		<class>ch.bfh.btx8053.jpa.family.Job</class>
+		<properties>
+ 	
+ 			<!-- MS SQL SERVER -->
+<!--  			<property name="javax.persistence.jdbc.driver" value="net.sourceforge.jtds.jdbc.Driver" /> -->
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:jtds:sqlserver://corpus.bfh.ch:55783;DatabaseName=YOURDBNAME" /> -->
+<!-- 			<property name="javax.persistence.jdbc.user" value="USER" /> -->
+<!-- 			<property name="javax.persistence.jdbc.password" value="PASSWORD" /> -->
+
+ 			<!-- HSQLDB -->
+  			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:file:./db/family;shutdown=true" />
+ 	    	<property name="username" value="sa" />
+    	    <property name="password" value="" />
+ 
+ 			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode"	value="both" />
+		</properties>
+	</persistence-unit>
+</persistence>
