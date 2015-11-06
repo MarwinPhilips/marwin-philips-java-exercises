@@ -4,9 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-import würfel.Dice;
-import würfel.FairDice;
-import würfel.hasA.looselyCoupled.Statistic;
+import wuerfel.Dice;
+import wuerfel.FairDice;
+import wuerfel.hasA.looselyCoupled.Statistic;
 
 public class NetToConsole {
 	private Chat chat;

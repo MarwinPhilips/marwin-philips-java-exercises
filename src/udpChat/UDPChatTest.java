@@ -10,9 +10,9 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.util.Scanner;
 
-import würfel.Dice;
-import würfel.FairDice;
-import würfel.hasA.looselyCoupled.Statistic;
+import wuerfel.Dice;
+import wuerfel.FairDice;
+import wuerfel.hasA.looselyCoupled.Statistic;
 
 /**
  *

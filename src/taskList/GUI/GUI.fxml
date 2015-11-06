@@ -24,6 +24,7 @@
             </HBox>
             <HBox prefHeight="34.0" prefWidth="662.0">
                <children>
+                  <Button fx:id="btnNew" mnemonicParsing="false" text="Neu" />
                   <Button fx:id="btnAbbrechen" mnemonicParsing="false" text="Abbrechen" />
                   <Button fx:id="btnSave" mnemonicParsing="false" text="Speichern" />
                </children>
@@ -44,12 +45,13 @@
       <HBox prefHeight="28.0" prefWidth="662.0" BorderPane.alignment="CENTER">
          <children>
             <Label prefHeight="17.0" prefWidth="82.0" text="Beschreibung" />
-            <TextField fx:id="txtSearchDescription" />
+            <TextField fx:id="txtSearchDescription" prefHeight="25.0" prefWidth="50.0" />
             <Label prefHeight="17.0" prefWidth="43.0" text="Status" />
-            <ComboBox fx:id="cbSearchState" prefWidth="150.0" />
+            <ComboBox fx:id="cbSearchState" prefHeight="25.0" prefWidth="106.0" />
             <Label prefHeight="17.0" prefWidth="60.0" text="Fälligkeit" />
             <DatePicker fx:id="dtSearchDueDate" />
             <Button fx:id="btnSearch" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Suche" />
+            <Button fx:id="btnBreakSearch" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="Abbrechen" />
          </children>
       </HBox>
    </top>

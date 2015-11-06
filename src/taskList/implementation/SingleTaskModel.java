@@ -1,6 +1,7 @@
 package taskList.implementation;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +19,7 @@ public class SingleTaskModel implements Task, Serializable {
 	private static final long serialVersionUID = 1L;
 	private RepetitionType repetitionType = RepetitionType.once;
 	private Status status;
-	private Date dueDate;
+	private LocalDate dueDate;
 	private String description;
 	public RepetitionType getRepetitionType() {
 		return repetitionType;
@@ -32,10 +33,10 @@ public class SingleTaskModel implements Task, Serializable {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	public Date getDueDate() {
+	public LocalDate getDueDate() {
 		return dueDate;
 	}
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(LocalDate dueDate) {
 		this.dueDate = dueDate;
 	}
 	public String getDescription() {
@@ -54,7 +55,7 @@ public class SingleTaskModel implements Task, Serializable {
 	public SingleTaskModel(){
 		
 	}
-	public SingleTaskModel(String description, Date dueDate, Status status){
+	public SingleTaskModel(String description, LocalDate dueDate, Status status){
 		this.status=status;
 		this.dueDate=dueDate;
 		this.description=description;

@@ -11,17 +11,17 @@ public class Patient{
 	private String vorname;
 	private char geschlecht;
 	private int gewicht;
-	private int grösse;
+	private int Grösse;
 	private LocalDate geburtsdatum;
 	private List<Fall> fälle;
 	
-	public Patient(int patientId, String name, String vorname, char geschlecht, int gewicht, int grösse, LocalDate geburtsdatum){
+	public Patient(int patientId, String name, String vorname, char geschlecht, int gewicht, int Grösse, LocalDate geburtsdatum){
 		this.patientId=patientId;
 		this.name=name;
 		this.vorname=vorname;
 		this.geschlecht=geschlecht;
 		this.gewicht=gewicht;
-		this.grösse=grösse;
+		this.Grösse=Grösse;
 		this.geburtsdatum=geburtsdatum;
 	}
 	public int getPatientId() {
@@ -48,10 +48,10 @@ public class Patient{
 	public void setGeburtsdatum(LocalDate geburtsdatum) {
 		this.geburtsdatum = geburtsdatum;
 	}
-	public List<Fall> getFälle() {
+	public List<Fall> getfälle() {
 		return fälle;
 	}
-	public void setFälle(List<Fall> fälle) {
+	public void setfälle(List<Fall> fälle) {
 		this.fälle = fälle;
 	}
 	public void AddFall(Fall fall) {
@@ -73,10 +73,10 @@ public class Patient{
 		this.gewicht = gewicht;
 	}
 	public int getGrösse() {
-		return grösse;
+		return Grösse;
 	}
-	public void setGrösse(int grösse) {
-		this.grösse = grösse;
+	public void setGrösse(int Grösse) {
+		this.Grösse = Grösse;
 	}
 	public String getAge(){
 		DeltaTime d = new DeltaTime(LocalDate.now(), geburtsdatum);	

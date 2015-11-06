@@ -1,5 +1,6 @@
 package taskList.implementation;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import taskList.definition.PrintTask;
@@ -9,7 +10,7 @@ import taskList.enumerations.Status;
 public class PrintTaskModel implements PrintTask {
 	private Task parentTask;
 	private Status status;
-	private Date dueDate;
+	private LocalDate dueDate;
 	private String description;
 	@Override
 	public String getDescription() {
@@ -18,7 +19,7 @@ public class PrintTaskModel implements PrintTask {
 	}
 
 	@Override
-	public Date getDueDate() {
+	public LocalDate getDueDate() {
 		// TODO Auto-generated method stub
 		return dueDate;
 	}
@@ -32,7 +33,7 @@ public class PrintTaskModel implements PrintTask {
 	public Task getParentTask() {
 		return parentTask;
 	}
-	public PrintTaskModel(Task parentTask, Status status, Date dueDate, String description){
+	public PrintTaskModel(Task parentTask, Status status, LocalDate dueDate, String description){
 		this.parentTask=parentTask;
 		this.status=status;
 		this.dueDate=dueDate;
